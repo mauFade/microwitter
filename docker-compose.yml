@@ -8,9 +8,10 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_DB: stripe_example
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - .postgreSQL:/var/lib/postgresql/data
     ports:
       - 5432:5432
+    restart: always
 
   microwitter:
     container_name: Microwitter
@@ -23,3 +24,7 @@ services:
       - 3003:3003
     depends_on:
       - postgres
+    restart: always
+
+volumes:
+  postgres-data:
