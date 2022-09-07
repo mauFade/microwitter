@@ -16,6 +16,17 @@ model User {
   email     String
   password  String
   country   String
+  tweets    Tweet[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Tweet {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
 }
